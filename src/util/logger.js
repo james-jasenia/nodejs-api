@@ -8,9 +8,9 @@ const log = logger({
     target: 'pino-pretty',
     options: {
         colorized: true,
-    }
+    },
+    timestamp: () => `, "time": "${new Date().toLocaleDateString()}"`
    },
-   timestamp: () => `, "time": "${new Date().toLocaleDateString()}"`
 });
 
 export default log;
