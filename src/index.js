@@ -1,6 +1,7 @@
-const express = require("express");
-const ip = require("ip");
-const dotenv = require("dotenv");
+import express from "express";
+import ip from "ip";
+import dotenv from "dotenv";
+import Response from './domain/response.js';
 
 dotenv.config();
 
@@ -9,9 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send({
-    message: "UP",
-  });
+  res.send(new Response(200, 'OK', 'Patient API, v1.0.0'));
 });
 
 console.log(`This is the environment:`);
