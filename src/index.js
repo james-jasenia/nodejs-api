@@ -10,7 +10,11 @@ const app = express();
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send(new Response(200, 'OK', 'Patient API, v1.0.0'));
+  res.send(new Response(200, 'OK', 'Patient API, v1.0.0', {
+    patients: {
+        name: "Junior"
+    }
+  }));
 });
 
 console.log(`This is the environment:`);
