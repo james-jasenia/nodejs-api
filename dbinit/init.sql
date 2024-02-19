@@ -17,4 +17,3 @@ CREATE TABLE patients (
     PRIMARY KEY (id),
     CONSTRAINT UQ_Patients_Email UNIQUE (email)
 );
-
