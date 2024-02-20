@@ -30,4 +30,19 @@ const HttpStatus = {
     },
 };
 
+export const getPatients = (req, res) => {
+    logger.info(`${req.method} ${req.originalUrl}, fetching patients.`);
+    database.query(QUERY.SELECT_PATIENTS, (error, result) => {
+        if(!result) {
+            res.status(HttpStatus.OK.code)
+            .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, 'No patients found.'));
+        } else {
+            res.status(HttpStatus.OK.code)
+            .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, 'Patients retrieved', {
+                patients: result
+            }));
+        }
+    });
+};
+
 export default HttpStatus;
