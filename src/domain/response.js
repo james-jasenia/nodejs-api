@@ -1,3 +1,5 @@
+import logger from '../util/logger.js';
+
 class Response {
     constructor(statusCode, httpStatus, message, data) {
         this.timeStamp = new Date().toLocaleString();

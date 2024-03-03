@@ -2,6 +2,8 @@ import database from '../config/mysql.config.js';
 import Response from '../domain/response.js';
 import logger from '../util/logger.js';
 import QUERY from '../query/patient.query.js';
+import util from 'util';
+
 
 const HttpStatus = {
     OK: {
@@ -9,7 +11,7 @@ const HttpStatus = {
         status: 'OK'
     },
     CREATED: {
-        code: 1,
+        code: 201,
         status: 'CREATED'
     },
     NO_CONTENT: {
@@ -39,14 +41,14 @@ export const getPatients = (req, res) => {
         } else {
             res.status(HttpStatus.OK.code)
             .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, 'Patients retrieved', {
-                patients: result
+                data: result
             }));
         }
     });
 };
 
 export const createPatient = (req, res) => {
-    logger.info(`${req.method} ${req.originalUrl}, creating patient.`);
+    logger.info(`${req.method} ${req.originalUrl}, ${util.inspect(req.body)}, creating patient.`);
     database.query(QUERY.CREATE_PATIENT, Object.values(req.body), (error, result) => {
         if(!result) {
             logger.error(error.message);
