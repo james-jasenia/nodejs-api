@@ -21,6 +21,32 @@ services:
     networks:
       - internalnet
 
+  nodeapp:
+    container_name: nodeappcontainer
+    build: .
+    image: nodeapp:v1
+    volumes:
+      - $HOME/nodeapp:/code
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    environment:
+      DB_HOST: mysqldb
+      DB_PORT: 3306
+      DB_USER: 'admin'
+      DB_PASSWORD: 'letmein'
+      DB_NAME: patientsdb
+      DB_CONNECTION_LIMIT: 20
+      SERVICE_TAGS: dev
+      SERVICE_NAME: nodeappservice
+      SERVER_PORT: 3000
+    depends_on:
+      - mysqldb
+    networks:
+      - internalnet
+
+
 # If you have two seperate containers running (DB and API), you need to put them on the same network so they are able to communicate with each other.
 networks:
   internalnet:
