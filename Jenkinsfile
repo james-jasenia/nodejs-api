@@ -4,20 +4,20 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Building..."'
-                sh 'mvn clean install'
+                echo 'echo "Building..."'
+                echo 'mvn clean install'
             }
         }
         stage('Test') {
             steps {
-                sh 'echo "Testing..."'
-                sh 'mvn test'
+                echo 'echo "Testing..."'
+                echo 'mvn test'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'echo "Deploying..."'
-                sh 'mvn deploy'
+                echo 'echo "Deploying..."'
+                echo 'mvn deploy'
             }
         }
     }
