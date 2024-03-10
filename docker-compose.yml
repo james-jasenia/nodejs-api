@@ -46,8 +46,6 @@ services:
     networks:
       - internalnet
 
-
-# If you have two seperate containers running (DB and API), you need to put them on the same network so they are able to communicate with each other.
 networks:
   internalnet:
     driver: bridge
